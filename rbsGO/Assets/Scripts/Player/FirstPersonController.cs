@@ -20,8 +20,8 @@ public class FirstPersonController : MonoBehaviour
     //[SerializeField]
     //Boolean isGrounded;
 
-    [SerializeField]
-    Transform groundCheck;
+    /*[SerializeField]
+    Transform groundCheck;*/
 
     [SerializeField]
     LayerMask groundLayer;
