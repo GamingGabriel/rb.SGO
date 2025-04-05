@@ -18,6 +18,7 @@ public class PlayerIdleState : PlayerBaseState
         {
             player.SwitchState(player.runState);
         }
+        
         //Debug.Log("Idling");
     }
 }

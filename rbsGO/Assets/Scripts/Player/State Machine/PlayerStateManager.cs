@@ -21,6 +21,15 @@ public class PlayerStateManager : MonoBehaviour
 
     public float speed;
 
+    Vector3 velocity; //for jumping? Unsure 
+
+    [SerializeField]
+
+    float jumpHeight = 2;
+    
+    [SerializeField]
+    float gravity = -10;
+
     Vector2 mouseMovement;
 
     [SerializeField] 
@@ -40,11 +49,34 @@ public class PlayerStateManager : MonoBehaviour
     {
         HandleCamera(mouseSensitivity);
         currentState.UpdateState(this);
+        Gravity();
     }
 
     void OnMove(InputValue moveVal)
     {
         movement = moveVal.Get<Vector2>();
+    }
+
+    void OnJump()
+    {
+        //hasJumped = true;
+        if (controller.isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * 2 * -gravity);  
+                //isGrounded = false;  
+            }
+    }  
+
+    void Gravity()
+    {
+
+        //isGrounded = Physics.CheckSphere(groundCheck.position, .2f, groundLayer);
+        
+        if (!controller.isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+        controller.Move(velocity * Time.deltaTime);
     }
 
     void OnLook(InputValue LookVal)
