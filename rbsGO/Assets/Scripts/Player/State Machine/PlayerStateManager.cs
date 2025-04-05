@@ -15,7 +15,11 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector]
     public PlayerJumpState jumpState = new PlayerJumpState();
 
-    Vector2 movement;
+    public CharacterController controller;
+
+    public Vector2 movement;
+
+    public float speed;
 
     Vector2 mouseMovement;
 
@@ -27,12 +31,15 @@ public class PlayerStateManager : MonoBehaviour
 
     void Start()
     {
+        controller = GetComponent<CharacterController>();
+        SwitchState(idleState);
 
     }
 
     void Update()
     {
         HandleCamera(mouseSensitivity);
+        currentState.UpdateState(this);
     }
 
     void OnMove(InputValue moveVal)
@@ -57,6 +64,12 @@ public class PlayerStateManager : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(cameraUpRotation, 0, 0);
 
         transform.Rotate(Vector3.up * lookX);
+    }
+
+    public void SwitchState(PlayerBaseState newState)
+    {
+        currentState = newState;
+        currentState.EnterState(this);
     }
     
 }

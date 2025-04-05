@@ -93,14 +93,17 @@ public class FirstPersonController : MonoBehaviour
             {
                 speed = MOVE_SPEED;
             }
-            
+            //DASH
+
             if (!canSprint)
             {
                 if (Mathf.Abs(lastSprint - Time.time) >= DASH_COOLDOWN) // if the difference between the last Sprint and now is greater than 5
                 {
                     canSprint = true;
                 }
-            }        
+            }
+
+            //CAMERA        
             float lookX = mouseMovement.x;
             float lookY = mouseMovement.y * Time.deltaTime * mouseSensitivity;
 
@@ -112,6 +115,7 @@ public class FirstPersonController : MonoBehaviour
 
             transform.Rotate(Vector3.up * lookX);
 
+            //MOVEMENT
             float moveX = movement.x;
             float moveZ = movement.y;
 
