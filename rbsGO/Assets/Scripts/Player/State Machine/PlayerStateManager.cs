@@ -36,7 +36,10 @@ public class PlayerStateManager : MonoBehaviour
     GameObject cam;    
     float cameraUpRotation = 0;
 
-     float mouseSensitivity = 50;
+    float mouseSensitivity = 50;
+
+    [SerializeField]
+    RevolverScript gun;
 
     void Start()
     {
@@ -82,6 +85,12 @@ public class PlayerStateManager : MonoBehaviour
     void OnLook(InputValue LookVal)
     {
         mouseMovement = LookVal.Get<Vector2>();
+    }
+
+    void OnAttack()
+    {
+        gun.Shoot();
+        //Debug.Log("shooting");
     }
 
     void HandleCamera(float sense)
