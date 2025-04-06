@@ -52,10 +52,13 @@ public class RevolverScript : MonoBehaviour
     {
         if (lastShot + shootDelay < Time.time)
         {
+            
             Vector3 direction = GetDirection();
+            Debug.DrawRay(transform.position, transform.forward * 10, Color.magenta);
 
             if (Physics.Raycast(spawnPoint.position, direction, out RaycastHit hit, float.MaxValue, mask))
             {
+                Debug.Log("Trigger");
                 TrailRenderer trail = Instantiate(bulletTrail, spawnPoint.position, Quaternion.identity);
                 
                 StartCoroutine(SpawnTrail(trail, hit));
