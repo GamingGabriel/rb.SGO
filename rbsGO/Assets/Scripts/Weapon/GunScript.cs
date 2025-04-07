@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 
 public class GunScript : MonoBehaviour
@@ -35,14 +36,21 @@ public class GunScript : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            
-            SpawnTrail(hit.point, trailDuration);
-            //GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
-            //Destroy(impactObj, .5f);
+            //Intsntiate Bullet Trail Object
+            GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
+            BulletTrailScript trailScript = trail.GetComponent<BulletTrailScript>();
+            trailScript.endPoint = hit.point;
+
+            //get trailScript from spawned trail
+            //do the thing
+
+            //SpawnTrail(hit.point, trailDuration);
+            GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
+            Destroy(impactObj, .5f);
         }
     }
 
-    void SpawnTrail(Vector3 endPoint, float duration)
+    /*void SpawnTrail(Vector3 endPoint, float duration)
     {
         
         GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
@@ -62,5 +70,8 @@ public class GunScript : MonoBehaviour
             //Debug.Log(currentPosition);
         }
 
+        
+
     }
+    */
 }
