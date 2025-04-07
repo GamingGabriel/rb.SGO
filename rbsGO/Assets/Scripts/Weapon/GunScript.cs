@@ -12,6 +12,15 @@ public class GunScript : MonoBehaviour
     [SerializeField]
     GameObject impactEffect;
 
+    [SerializeField]
+    GameObject bulletTrail;
+
+    [SerializeField]
+    Transform spawnPoint;
+    
+    [SerializeField]
+    float trailDuration;
+
     // Update is called once per frame
     void Update()
     {
@@ -26,8 +35,32 @@ public class GunScript : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
-            Destroy(impactObj, .5f);
+            
+            SpawnTrail(hit.point, trailDuration);
+            //GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
+            //Destroy(impactObj, .5f);
         }
+    }
+
+    void SpawnTrail(Vector3 endPoint, float duration)
+    {
+        
+        GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
+        Vector3 startPosition = spawnPoint.transform.position;
+        
+        //float distance = Vector3.Distance(trail.transform.position, endPoint);
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            Debug.Log(elapsedTime);
+            float currentPosition = elapsedTime / duration; 
+            trail.transform.position = Vector3.Lerp(startPosition, endPoint, currentPosition);
+            //Debug.Log(trail.transform.position);
+
+            //Debug.Log(currentPosition);
+        }
+
     }
 }
