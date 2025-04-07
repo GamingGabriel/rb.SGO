@@ -39,7 +39,7 @@ public class PlayerStateManager : MonoBehaviour
     float mouseSensitivity = 50;
 
     [SerializeField]
-    RevolverScript gun;
+    GunScript gun;
 
     void Start()
     {
