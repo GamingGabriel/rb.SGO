@@ -4,13 +4,13 @@ public class PlayerRunState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-         //What happens when we enter this scene?
-        Debug.Log("Entered Run");
+        //What happens when we enter this scene?
+        //Debug.Log("Entered Run");
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        Debug.Log("Running");
+        //Debug.Log("Running");
          //What are we doing in this state?
             float moveX = player.movement.x;
 

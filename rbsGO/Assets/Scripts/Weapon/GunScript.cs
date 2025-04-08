@@ -1,4 +1,3 @@
-using System.Drawing;
 using UnityEngine;
 
 public class GunScript : MonoBehaviour
@@ -35,18 +34,36 @@ public class GunScript : MonoBehaviour
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, float.MaxValue))
         {
             Debug.Log(hit.transform.name);
-
-            //Intsntiate Bullet Trail Object
+            //Intsntiate Bullet Trail Object; maybe make function? idk
             GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
             BulletTrailScript trailScript = trail.GetComponent<BulletTrailScript>();
+            
             trailScript.endPoint = hit.point;
+
+            if(hit.transform.CompareTag("Bounce"))
+            {
+                //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
+                Debug.Log("Bounce Hit!");
+                Vector3 bounceHit = hit.point;
+                Transform bounceTrans = hit.transform;
+                //print(Physics.SphereCast(bounceHit, 100, bounceHit, out hit, 0.1f, LayerMask.GetMask("Enemy")));
+
+                //if(Physics.SphereCast(bounceHit, 100, bounceTrans.forward, out hit, 100, LayerMask.GetMask("Enemy")))
+                //if(Physics.Raycast(bounceHit, bounceTrans.forward, out hit, float.MaxValue))
+                if(Physics.OverlapSphere(bounceHit, 100, LayerMask.GetMask("Enemy")).Length > 0)
+                {
+                    //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
+                    Debug.Log("Enemy Hit!");
+                }
+            }
+            
+
 
             //get trailScript from spawned trail
             //do the thing
 
-            //SpawnTrail(hit.point, trailDuration);
-            GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
-            Destroy(impactObj, .5f);
+            /*GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
+            Destroy(impactObj, .5f);*/
         }
     }
 

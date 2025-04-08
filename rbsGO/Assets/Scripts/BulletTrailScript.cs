@@ -24,7 +24,7 @@ public class BulletTrailScript : MonoBehaviour
     void Update()
     {
             elapsedTime += Time.deltaTime;
-            Debug.Log(elapsedTime);
+            //Debug.Log(elapsedTime);
             float currentPosition = elapsedTime / duration; 
             transform.position = Vector3.Lerp(spawnPoint, endPoint, currentPosition);
             //Debug.Log(trail.transform.position);
