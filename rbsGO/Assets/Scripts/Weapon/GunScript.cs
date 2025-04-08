@@ -35,25 +35,34 @@ public class GunScript : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
             //Intsntiate Bullet Trail Object; maybe make function? idk
-            GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
-            BulletTrailScript trailScript = trail.GetComponent<BulletTrailScript>();
-            
-            trailScript.endPoint = hit.point;
+            /*GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
+            BulletTrailScript trailScript = trail.GetComponent<BulletTrailScript>(); 
+            trailScript.endPoint = hit.point;*/
+
+            BulletTrail(spawnPoint.transform.position, hit.point);
 
             if(hit.transform.CompareTag("Bounce"))
             {
-                //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
+                Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
                 Debug.Log("Bounce Hit!");
+                
                 Vector3 bounceHit = hit.point;
                 Transform bounceTrans = hit.transform;
-                //print(Physics.SphereCast(bounceHit, 100, bounceHit, out hit, 0.1f, LayerMask.GetMask("Enemy")));
-
-                //if(Physics.SphereCast(bounceHit, 100, bounceTrans.forward, out hit, 100, LayerMask.GetMask("Enemy")))
-                //if(Physics.Raycast(bounceHit, bounceTrans.forward, out hit, float.MaxValue))
-                if(Physics.OverlapSphere(bounceHit, 100, LayerMask.GetMask("Enemy")).Length > 0)
+                Collider[] enemyHits = Physics.OverlapSphere(bounceHit, 100, LayerMask.GetMask("Enemy"));
+                if(enemyHits.Length > 0)
                 {
+
+                    Collider closest = enemyHits[0];
+                    foreach(Collider c in enemyHits)
+                    {
+                        if (Vector3.Distance(bounceHit, closest.transform.position) > Vector3.Distance(bounceHit, c.transform.position))
+                        {
+                            closest = c;
+                        }
+                    }
                     //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
-                    Debug.Log("Enemy Hit!");
+                    closest.GetComponent<EnemyScript>().TakeDamage(1);
+                    BulletTrail(bounceHit, closest.transform.position);
                 }
             }
             
@@ -65,6 +74,13 @@ public class GunScript : MonoBehaviour
             /*GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
             Destroy(impactObj, .5f);*/
         }
+    }
+
+    public void BulletTrail(Vector3 origin, Vector3 end)
+    {
+            GameObject trail = Instantiate(bulletTrail, origin, Quaternion.Euler(Vector3.forward));
+            BulletTrailScript trailScript = trail.GetComponent<BulletTrailScript>();
+            trailScript.endPoint = end;
     }
 
     /*void SpawnTrail(Vector3 endPoint, float duration)

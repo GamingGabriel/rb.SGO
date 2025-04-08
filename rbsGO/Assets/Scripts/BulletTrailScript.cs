@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class BulletTrailScript : MonoBehaviour
@@ -9,6 +10,9 @@ public class BulletTrailScript : MonoBehaviour
 
     [SerializeField]
     float duration;
+
+    [SerializeField]
+    float fade;
 
     private float elapsedTime = 0;
 
@@ -30,7 +34,7 @@ public class BulletTrailScript : MonoBehaviour
             //Debug.Log(trail.transform.position);
             //Debug.Log(currentPosition);
 
-            if( elapsedTime >= duration)
+            if( elapsedTime >= fade)
             {
                 Destroy(gameObject);
             }

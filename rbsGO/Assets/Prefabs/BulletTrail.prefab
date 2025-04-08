@@ -103,7 +103,8 @@ MonoBehaviour:
   trail: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 0}
   endPoint: {x: 0, y: 0, z: 0}
-  duration: 0.2
+  duration: 0.05
+  fade: 0.4
 --- !u!96 &3872068129936365786
 TrailRenderer:
   serializedVersion: 3
