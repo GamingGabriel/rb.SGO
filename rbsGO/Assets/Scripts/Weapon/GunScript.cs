@@ -55,24 +55,30 @@ public class GunScript : MonoBehaviour
                     Collider closest = enemyHits[0];
                     foreach(Collider c in enemyHits)
                     {
-                        if (Vector3.Distance(bounceHit, closest.transform.position) > Vector3.Distance(bounceHit, c.transform.position))
+                        Vector3 dir = (c.transform.position - bounceHit).normalized;
+                        //RaycastHit los;
+                        Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
+                        print(Physics.Raycast(bounceHit, dir, out hit, float.MaxValue, LayerMask.GetMask("Default")));
+                        //print(hit.transform.name);
+                        if ((Vector3.Distance(bounceHit, closest.transform.position) > Vector3.Distance(bounceHit, c.transform.position))
+                            && (!Physics.Raycast(bounceHit, dir, out hit, 100, LayerMask.GetMask("Default"))))
                         {
                             closest = c;
                         }
                     }
                     //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
+                    
+                    //Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
                     closest.GetComponent<EnemyScript>().TakeDamage(1);
                     BulletTrail(bounceHit, closest.transform.position);
                 }
             }
-            
-
-
-            //get trailScript from spawned trail
-            //do the thing
-
             /*GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
             Destroy(impactObj, .5f);*/
+        }
+        else
+        {
+            BulletTrail(spawnPoint.transform.position, cam.transform.forward * 50 );
         }
     }
 
@@ -83,28 +89,5 @@ public class GunScript : MonoBehaviour
             trailScript.endPoint = end;
     }
 
-    /*void SpawnTrail(Vector3 endPoint, float duration)
-    {
-        
-        GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
-        Vector3 startPosition = spawnPoint.transform.position;
-        
-        //float distance = Vector3.Distance(trail.transform.position, endPoint);
-        float elapsedTime = 0;
 
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            Debug.Log(elapsedTime);
-            float currentPosition = elapsedTime / duration; 
-            trail.transform.position = Vector3.Lerp(startPosition, endPoint, currentPosition);
-            //Debug.Log(trail.transform.position);
-
-            //Debug.Log(currentPosition);
-        }
-
-        
-
-    }
-    */
 }

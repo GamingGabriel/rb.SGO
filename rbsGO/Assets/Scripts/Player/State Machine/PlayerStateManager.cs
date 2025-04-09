@@ -41,6 +41,15 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     GunScript gun;
 
+    [SerializeField]
+    GameObject throwable;
+
+    [SerializeField]
+    Transform throwPoint;
+
+    [SerializeField]
+    float throwForce;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -93,6 +102,12 @@ public class PlayerStateManager : MonoBehaviour
         //Debug.Log("shooting");
     }
 
+    void OnThrow()
+    {
+        GameObject thrown = Instantiate(throwable, throwPoint.position, Quaternion.Euler(Vector3.forward));
+        thrown.GetComponent<ThrowScript>().Throw(throwPoint.forward, throwForce);
+    }
+
     void HandleCamera(float sense)
     {
         float lookX = mouseMovement.x;
@@ -112,5 +127,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState = newState;
         currentState.EnterState(this);
     }
+
+
     
 }
