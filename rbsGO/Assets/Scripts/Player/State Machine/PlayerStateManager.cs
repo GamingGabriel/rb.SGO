@@ -52,6 +52,7 @@ public class PlayerStateManager : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         SwitchState(idleState);
 

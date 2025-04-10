@@ -28,5 +28,6 @@ public class ThrowScript : MonoBehaviour
     {
         //body.AddForce(Vector3.Scale(body.transform.forward, Vector3.up).normalized * force, ForceMode.VelocityChange);
         body.AddForce(direction * force);
+        Destroy(gameObject, 2f);
     }
 }

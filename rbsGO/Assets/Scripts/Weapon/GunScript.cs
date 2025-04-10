@@ -47,7 +47,7 @@ public class GunScript : MonoBehaviour
                 Debug.Log("Bounce Hit!");
                 
                 Vector3 bounceHit = hit.point;
-                Transform bounceTrans = hit.transform;
+                //Transform bounceTrans = hit.transform;
                 Collider[] enemyHits = Physics.OverlapSphere(bounceHit, 100, LayerMask.GetMask("Enemy"));
                 if(enemyHits.Length > 0)
                 {
@@ -58,23 +58,26 @@ public class GunScript : MonoBehaviour
                         Vector3 dir = (c.transform.position - bounceHit).normalized;
                         //RaycastHit los;
                         Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
-                        print(Physics.Raycast(bounceHit, dir, out hit, float.MaxValue, LayerMask.GetMask("Default")));
+                        //print(Physics.Raycast(bounceHit, dir, out hit, float.MaxValue, LayerMask.GetMask("Default")));
+                        print("Current Closest: " + closest.name + Vector3.Distance(bounceHit, closest.transform.position));
+                        print("Check: " + c.name + Vector3.Distance(bounceHit, c.transform.position));
                         //print(hit.transform.name);
                         if ((Vector3.Distance(bounceHit, closest.transform.position) > Vector3.Distance(bounceHit, c.transform.position))
-                            && (!Physics.Raycast(bounceHit, dir, out hit, 100, LayerMask.GetMask("Default"))))
+                            && (Physics.Raycast(bounceHit, dir, out hit, 100)))
                         {
                             closest = c;
                         }
+                        print("Winner: " + closest.name);
                     }
                     //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
-                    
+                    print(closest.name + Vector3.Distance(bounceHit, closest.transform.position));
                     //Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
                     closest.GetComponent<EnemyScript>().TakeDamage(1);
                     BulletTrail(bounceHit, closest.transform.position);
                 }
             }
-            /*GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
-            Destroy(impactObj, .5f);*/
+            GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
+            Destroy(impactObj, .5f);
         }
         else
         {
