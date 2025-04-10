@@ -33,7 +33,7 @@ public class GunScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, float.MaxValue))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             //Intsntiate Bullet Trail Object; maybe make function? idk
             /*GameObject trail = Instantiate(bulletTrail, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.transform.forward));
             BulletTrailScript trailScript = trail.GetComponent<BulletTrailScript>(); 
@@ -52,24 +52,29 @@ public class GunScript : MonoBehaviour
                 if(enemyHits.Length > 0)
                 {
 
-                    Collider closest = enemyHits[0];
+                    Collider closest = enemyHits[0]; //Start As Null
                     foreach(Collider c in enemyHits)
                     {
                         Vector3 dir = (c.transform.position - bounceHit).normalized;
                         //RaycastHit los;
-                        Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
+                        //Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
                         //print(Physics.Raycast(bounceHit, dir, out hit, float.MaxValue, LayerMask.GetMask("Default")));
-                        print("Current Closest: " + closest.name + Vector3.Distance(bounceHit, closest.transform.position));
-                        print("Check: " + c.name + Vector3.Distance(bounceHit, c.transform.position));
+                        //print("Current Closest: " + closest.name + Vector3.Distance(bounceHit, closest.transform.position));
+                        //print("Check: " + c.name + Vector3.Distance(bounceHit, c.transform.position));
                         //print(hit.transform.name);
-                        if ((Vector3.Distance(bounceHit, closest.transform.position) > Vector3.Distance(bounceHit, c.transform.position))
-                            && (Physics.Raycast(bounceHit, dir, out hit, 100)))
+                        if ((Vector3.Distance(bounceHit, closest.transform.position) > Vector3.Distance(bounceHit, c.transform.position)))
                         {
-                            closest = c;
+                            RaycastHit lineOfSight;
+                            bool found = Physics.Raycast(bounceHit, dir, out lineOfSight, float.MaxValue);
+                            if (found && lineOfSight.transform.gameObject.CompareTag("Enemy")) 
+                            {
+                                closest = c;
+                            }
+                            
                         }
                         print("Winner: " + closest.name);
                     }
-                    //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);
+                    //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);*/
                     print(closest.name + Vector3.Distance(bounceHit, closest.transform.position));
                     //Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
                     closest.GetComponent<EnemyScript>().TakeDamage(1);
