@@ -50,11 +50,36 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     float throwForce;
 
+    [SerializeField]
+    float MOVE_SPEED;
+
+    [SerializeField]
+    bool canSprint;
+
+    [SerializeField]
+    float lastSprint;
+
+    [SerializeField]
+    float DASH_COOLDOWN; //The gap between dashes
+
+    [SerializeField]
+    float DASH_SPEED; //The maximum speed of your dash
+
+
+    //[SerializeField]
+    //float DASH_RATE; //The rate you will reach your dash's max speed
+
+
+
+    [SerializeField]
+    float DASH_DURATION;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         SwitchState(idleState);
+        canSprint = true;
 
     }
 
@@ -62,6 +87,19 @@ public class PlayerStateManager : MonoBehaviour
     {
         HandleCamera(mouseSensitivity);
         currentState.UpdateState(this);
+        if (!canSprint)
+        {
+            if (Mathf.Abs(lastSprint - Time.time) >= DASH_COOLDOWN) // if the difference between the last Sprint and now is greater than 5
+            {
+                canSprint = true;
+            }
+
+            if (Mathf.Abs(lastSprint - Time.time) >= DASH_DURATION) // if the difference between the last Sprint and now is greater than 5
+            {
+                speed = MOVE_SPEED;
+                gravity = -10;
+            }
+        }
         Gravity();
     }
 
@@ -128,6 +166,23 @@ public class PlayerStateManager : MonoBehaviour
         currentState = newState;
         currentState.EnterState(this);
     }
+
+    void OnSprint()
+    {
+        if (canSprint)
+        {
+            velocity.y = 0;
+            lastSprint = Time.time; //Sets the time of lastSprint to time of input
+            canSprint = false; //sets the ability to sprint to false            
+            /*while (speed <= DASH_SPEED)
+                {
+                    speed += DASH_RATE * Time.deltaTime;
+                }
+            */
+            speed = DASH_SPEED;
+            gravity = 0;
+        }
+    }  
 
 
     
