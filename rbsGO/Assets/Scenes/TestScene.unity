@@ -2406,7 +2406,7 @@ GameObject:
   - component: {fileID: 1844030650}
   - component: {fileID: 1844030649}
   - component: {fileID: 1844030648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2497,7 +2497,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.4, z: 0}
-  m_LocalScale: {x: 80, y: 1, z: 80}
+  m_LocalScale: {x: 160, y: 1, z: 160}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2593,7 +2593,7 @@ GameObject:
   - component: {fileID: 2067693215}
   - component: {fileID: 2067693214}
   - component: {fileID: 2067693213}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2754,12 +2754,32 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
+      propertyPath: wall.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
       propertyPath: DASH_COOLDOWN
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
       propertyPath: DASH_DURATION
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
+      propertyPath: ground.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
+      propertyPath: minJumpHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
+      propertyPath: wallrunScript
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
+      propertyPath: wallCheckDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

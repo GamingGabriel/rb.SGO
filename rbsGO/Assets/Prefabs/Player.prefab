@@ -308,13 +308,34 @@ MonoBehaviour:
   controller: {fileID: 0}
   movement: {x: 0, y: 0}
   speed: 10
-  jumpHeight: 2
   gravity: -10
   cam: {fileID: 1111702923554563590}
   gun: {fileID: 4069918797565868302}
-  throwable: {fileID: 4657718941741089514, guid: cabeca001053c0d41baf91cf5918cff0, type: 3}
+  throwable: {fileID: 0}
   throwPoint: {fileID: 6805078902574774217}
   throwForce: 1000
+  wall:
+    serializedVersion: 2
+    m_Bits: 256
+  ground:
+    serializedVersion: 2
+    m_Bits: 128
+  wallrunSpeed: 0
+  maxWallrunTime: 0
+  wallrunTimer: 0
+  wallCheckDistance: 1
+  minJumpHeight: 2
+  wallLeft: 0
+  wallRight: 0
+  WALLRUN_SPEED: 0
+  MOVE_SPEED: 10
+  jumpHeight: 2
+  canSprint: 0
+  wallrunning: 0
+  lastSprint: 0
+  DASH_COOLDOWN: 0.5
+  DASH_SPEED: 20
+  DASH_DURATION: 0.5
 --- !u!143 &8864210575750246667
 CharacterController:
   m_ObjectHideFlags: 0

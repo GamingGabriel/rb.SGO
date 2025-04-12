@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerStateManager : MonoBehaviour
 {
+    [Header("States")]
     [HideInInspector]
     public PlayerBaseState currentState;
 
@@ -15,21 +16,23 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector]
     public PlayerJumpState jumpState = new PlayerJumpState();
 
+    [HideInInspector]
+    public PlayerWallrunState wallrunState = new PlayerWallrunState();
+
+    [Header("Input")]
     public CharacterController controller;
 
     public Vector2 movement;
 
-    public float speed;
+    [Header("Physics")]
+    public float speed; //The current DESIRED speed
 
     Vector3 velocity; //for jumping? Unsure 
-
-    [SerializeField]
-
-    float jumpHeight = 2;
     
     [SerializeField]
     float gravity = -10;
 
+    [Header("Camera")]
     Vector2 mouseMovement;
 
     [SerializeField] 
@@ -38,6 +41,7 @@ public class PlayerStateManager : MonoBehaviour
 
     float mouseSensitivity = 50;
 
+    [Header("Weapon")]
     [SerializeField]
     GunScript gun;
 
@@ -50,11 +54,38 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     float throwForce;
 
+    
+    //public WallrunScript wallrunScript;
+
+    [Header("Wallrunning")]
+    public LayerMask wall;
+    public LayerMask ground;
+    public float wallrunSpeed;
+    public float maxWallrunTime;
     [SerializeField]
-    float MOVE_SPEED;
+    float wallrunTimer;
+
+    [Header("Detection")]
+    public float wallCheckDistance;
+    public float minJumpHeight; 
+    private RaycastHit leftWallHit;
+    private RaycastHit rightWallHit;
+    public bool wallLeft;
+    public bool wallRight;
+
+    [SerializeField]
+    float WALLRUN_SPEED;  
+
+    [Header("Movement")]
+    public float MOVE_SPEED;
+    [SerializeField]
+
+    float jumpHeight = 2;
 
     [SerializeField]
     bool canSprint;
+
+    public bool wallrunning;
 
     [SerializeField]
     float lastSprint;
@@ -68,8 +99,6 @@ public class PlayerStateManager : MonoBehaviour
 
     //[SerializeField]
     //float DASH_RATE; //The rate you will reach your dash's max speed
-
-
 
     [SerializeField]
     float DASH_DURATION;
@@ -100,6 +129,7 @@ public class PlayerStateManager : MonoBehaviour
                 gravity = -10;
             }
         }
+        CheckForWall();
         Gravity();
     }
 
@@ -182,7 +212,21 @@ public class PlayerStateManager : MonoBehaviour
             speed = DASH_SPEED;
             gravity = 0;
         }
-    }  
+    }
+    private void CheckForWall()
+    { //*
+        wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, wallCheckDistance, wall);
+        Debug.DrawRay(transform.position, transform.right * wallCheckDistance, Color.red, .5f);
+        wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, wallCheckDistance, wall);
+        Debug.DrawRay(transform.position, -transform.right * wallCheckDistance, Color.red, .5f);
+
+        Debug.DrawRay(transform.position, Vector3.down * minJumpHeight, Color.blue, .5f);
+    }
+
+    public bool AboveGround()
+    {
+        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, ground);
+    }
 
 
     

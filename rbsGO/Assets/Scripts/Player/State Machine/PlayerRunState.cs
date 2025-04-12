@@ -6,6 +6,7 @@ public class PlayerRunState : PlayerBaseState
     {
         //What happens when we enter this scene?
         //Debug.Log("Entered Run");
+        player.speed = player.MOVE_SPEED;
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -20,8 +21,11 @@ public class PlayerRunState : PlayerBaseState
 
             player.controller.Move(actual_movement * Time.deltaTime * player.speed);
         //When will we leave this scene?  
-
-        if (player.movement.magnitude < 0.1)
+        if ((player.wallLeft || player.wallRight) && player.AboveGround())
+        {
+            player.SwitchState(player.wallrunState);
+        }
+        else if (player.movement.magnitude < 0.1)
         {
             player.SwitchState(player.idleState);
         }
