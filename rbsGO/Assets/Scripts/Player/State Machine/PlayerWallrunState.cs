@@ -13,6 +13,10 @@ public class PlayerWallrunState : PlayerBaseState
     {
         //What happens in this state?
 
-        //When will we leave this state?  
+        //When will we leave this state? 
+        if ((!player.wallLeft && !player.wallRight) || !player.AboveGround())
+        {
+            player.SwitchState(player.runState);
+        } 
     }   
 }

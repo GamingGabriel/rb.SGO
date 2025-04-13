@@ -2746,40 +2746,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1351032685}
     - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: DASH_SPEED
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: MOVE_SPEED
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: wall.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: DASH_COOLDOWN
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: DASH_DURATION
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: ground.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
       propertyPath: minJumpHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: wallrunScript
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      propertyPath: wallCheckDistance
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
