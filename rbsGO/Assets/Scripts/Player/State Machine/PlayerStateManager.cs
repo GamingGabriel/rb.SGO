@@ -38,7 +38,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Camera")]
     Vector2 mouseMovement;
 
-    [SerializeField] 
+    [SerializeField]
     GameObject cam;    
     float cameraUpRotation = 0;
 

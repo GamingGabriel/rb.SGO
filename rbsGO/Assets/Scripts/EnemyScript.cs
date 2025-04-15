@@ -18,6 +18,11 @@ public class EnemyScript : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        Debug.Log("Took " + dmg + " damage");
+        health -= dmg;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

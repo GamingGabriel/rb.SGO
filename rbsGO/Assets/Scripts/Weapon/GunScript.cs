@@ -77,9 +77,13 @@ public class GunScript : MonoBehaviour
                     //Debug.DrawRay(hit.transform.position, hit.transform.forward * 100, Color.blue, 2);*/
                     print(closest.name + Vector3.Distance(bounceHit, closest.transform.position));
                     //Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
-                    closest.GetComponent<EnemyScript>().TakeDamage(1);
+                    closest.GetComponent<EnemyScript>().TakeDamage(10);
                     BulletTrail(bounceHit, closest.transform.position);
                 }
+            }
+            else if (hit.transform.CompareTag("Enemy"))
+            {
+                hit.transform.gameObject.GetComponent<EnemyScript>().TakeDamage(1);
             }
             GameObject impactObj = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); 
             Destroy(impactObj, .5f);
