@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 2144351711159349097}
-  thrown: 1
+  coll: {fileID: 9091176935558895851}

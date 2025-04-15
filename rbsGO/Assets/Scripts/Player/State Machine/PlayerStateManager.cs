@@ -27,10 +27,13 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Physics")]
     public float speed; //The current DESIRED speed
 
-    Vector3 velocity; //for jumping? Unsure 
+    public Vector3 velocity; //for jumping? Unsure 
     
-    [SerializeField]
-    float gravity = -10;
+    public float gravity = -10;
+    
+    public float BASE_GRAVITY;
+
+    public float WALL_GRAVITY;
 
     [Header("Camera")]
     Vector2 mouseMovement;
@@ -45,8 +48,12 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     GunScript gun;
 
+    [Header("Throw")]
     [SerializeField]
-    GameObject throwable;
+    GameObject currentHeld;
+
+    [SerializeField]
+    bool isHolding;
 
     [SerializeField]
     Transform throwPoint;
@@ -54,13 +61,15 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     float throwForce;
 
+    public Vector3 storedMovement;
+
     
     //public WallrunScript wallrunScript;
 
     [Header("Wallrunning")]
     public LayerMask wall;
     public LayerMask ground;
-    public float wallrunSpeed;
+    public float WALLRUN_SPEED;  
     public float maxWallrunTime;
     [SerializeField]
     float wallrunTimer;
@@ -73,13 +82,11 @@ public class PlayerStateManager : MonoBehaviour
     public bool wallLeft;
     public bool wallRight;
 
-    [SerializeField]
-    float WALLRUN_SPEED;  
+
 
     [Header("Movement")]
     public float MOVE_SPEED;
     [SerializeField]
-
     float jumpHeight = 2;
 
     [SerializeField]
@@ -109,11 +116,14 @@ public class PlayerStateManager : MonoBehaviour
         controller = GetComponent<CharacterController>();
         SwitchState(idleState);
         canSprint = true;
+        BASE_GRAVITY = -10;
+        isHolding = false;
 
     }
 
     void Update()
     {
+        
         HandleCamera(mouseSensitivity);
         currentState.UpdateState(this);
         if (!canSprint)
@@ -130,6 +140,13 @@ public class PlayerStateManager : MonoBehaviour
             }
         }
         CheckForWall();
+        if ((!wallLeft && !wallRight) && AboveGround())
+        {
+            if (gravity >= BASE_GRAVITY)
+            {
+                gravity -= .2f;
+            }
+        }
         Gravity();
     }
 
@@ -146,7 +163,24 @@ public class PlayerStateManager : MonoBehaviour
                 velocity.y = Mathf.Sqrt(jumpHeight * 2 * -gravity);  
                 //isGrounded = false;  
             }
+        else if (wallrunning)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -gravity);  
+        }
     }  
+
+    void OnPickup()
+    {
+        RaycastHit pickup;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out pickup, 100, LayerMask.GetMask("Bounce")))
+        {
+            
+            currentHeld = pickup.transform.gameObject;
+            currentHeld.GetComponent<ThrowScript>().PickUp();
+            currentHeld.transform.SetParent(throwPoint);
+            currentHeld.transform.position = throwPoint.transform.position;
+        }
+    }
 
     void Gravity()
     {
@@ -173,8 +207,12 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnThrow()
     {
-        GameObject thrown = Instantiate(throwable, throwPoint.position, Quaternion.Euler(Vector3.forward));
-        thrown.GetComponent<ThrowScript>().Throw(throwPoint.forward, throwForce);
+        //GameObject thrown = Instantiate(throwable, throwPoint.position, Quaternion.Euler(Vector3.forward));
+        if (currentHeld != null)
+        {
+            currentHeld.GetComponent<ThrowScript>().Throw(throwPoint.forward, throwForce);
+            currentHeld = null;
+        }
     }
 
     void HandleCamera(float sense)

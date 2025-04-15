@@ -7,6 +7,8 @@ public class PlayerRunState : PlayerBaseState
         //What happens when we enter this scene?
         //Debug.Log("Entered Run");
         player.speed = player.MOVE_SPEED;
+        player.gravity = player.BASE_GRAVITY;
+        player.wallrunning = false;
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -16,8 +18,9 @@ public class PlayerRunState : PlayerBaseState
             float moveX = player.movement.x;
 
             float moveZ = player.movement.y;
-
+            
             Vector3 actual_movement = (player.transform.forward * moveZ) + (player.transform.right * moveX);
+            player.storedMovement = actual_movement;
 
             player.controller.Move(actual_movement * Time.deltaTime * player.speed);
         //When will we leave this scene?  
