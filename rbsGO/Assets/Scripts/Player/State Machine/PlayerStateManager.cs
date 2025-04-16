@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class PlayerStateManager : MonoBehaviour
 
     public Vector2 movement;
 
+    [SerializeField]
+    float mouseSensitivity;
+
     [Header("Physics")]
     public float speed; //The current DESIRED speed
 
@@ -42,7 +46,7 @@ public class PlayerStateManager : MonoBehaviour
     GameObject cam;    
     float cameraUpRotation = 0;
 
-    float mouseSensitivity = 50;
+
 
     [Header("Weapon")]
     [SerializeField]
@@ -120,6 +124,7 @@ public class PlayerStateManager : MonoBehaviour
         isHolding = false;
 
     }
+    
 
     void Update()
     {
@@ -217,7 +222,7 @@ public class PlayerStateManager : MonoBehaviour
 
     void HandleCamera(float sense)
     {
-        float lookX = mouseMovement.x;
+        float lookX = mouseMovement.x * Time.deltaTime * mouseSensitivity;
         float lookY = mouseMovement.y * Time.deltaTime * mouseSensitivity;
 
         cameraUpRotation -= lookY;
@@ -266,6 +271,13 @@ public class PlayerStateManager : MonoBehaviour
         return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, ground);
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Kill"))
+        {
+            SceneManager.LoadScene("TestScene");
+        }
+    }
 
-    
+
 }
