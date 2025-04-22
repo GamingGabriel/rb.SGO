@@ -52,6 +52,15 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     GunScript gun;
 
+    [SerializeField]
+    bool canShoot; //variable which dicates you can shoot
+
+    [SerializeField]
+    float lastShot; //last shot fired; used to check if the gap between this and the current time >= canShoot
+
+    [SerializeField]
+    float fireRate; //delay between shots
+
     [Header("Throw")]
     [SerializeField]
     GameObject currentHeld;
@@ -122,6 +131,7 @@ public class PlayerStateManager : MonoBehaviour
         canSprint = true;
         BASE_GRAVITY = -10;
         isHolding = false;
+        canShoot = true;
 
     }
     
@@ -150,6 +160,14 @@ public class PlayerStateManager : MonoBehaviour
             if (gravity >= BASE_GRAVITY)
             {
                 gravity -= .2f;
+            }
+        }
+        if (!canShoot)
+        {
+            if (Mathf.Abs(lastShot - Time.time) >= fireRate) // if the difference between the last Sprint and now is greater than 5
+            {
+                canShoot = true;
+                gun.anim.ResetTrigger(gun.animName);
             }
         }
         Gravity();
@@ -206,8 +224,14 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnAttack()
     {
-        gun.Shoot();
-        //Debug.Log("shooting");
+        if (canShoot)
+        {
+            gun.Shoot();
+            lastShot = Time.time; //Sets the time of lastShot to time of input
+            canShoot = false; //sets the ability to shoot to false       
+            gun.anim.SetTrigger(gun.animName);
+            //Debug.Log("shooting");
+        }
     }
 
     void OnThrow()

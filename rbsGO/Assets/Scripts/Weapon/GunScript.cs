@@ -21,6 +21,13 @@ public class GunScript : MonoBehaviour
     [SerializeField]
     float trailDuration;
 
+
+    
+    public string animName = "Fired";
+    public Animator anim;
+
+
+
     // Update is called once per frame
     void Update()
     {
