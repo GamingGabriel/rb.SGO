@@ -150,8 +150,16 @@ public class PlayerStateManager : MonoBehaviour
 
             if (Mathf.Abs(lastSprint - Time.time) >= DASH_DURATION) // if the difference between the last Sprint and now is greater than 5
             {
-                speed = MOVE_SPEED;
-                gravity = -10;
+                if (wallrunning)
+                {
+                    speed = WALLRUN_SPEED;
+                    gravity = WALL_GRAVITY;
+                }
+                else
+                {
+                    speed = MOVE_SPEED;
+                    gravity = -10;
+                }  
             }
         }
         CheckForWall();
@@ -299,7 +307,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (other.CompareTag("Kill"))
         {
-            SceneManager.LoadScene("TestScene");
+            SceneManager.LoadScene("Robot Body Factory");
         }
     }
 
