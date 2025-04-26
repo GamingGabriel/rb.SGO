@@ -44,7 +44,8 @@ public class EnemyScript : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
             print("in range");
-            RotateTowardsPlayer();
+            transform.LookAt(player.transform);
+            //RotateTowardsPlayer();
         } 
 
         if (Time.time - lastShot > rateOfFire)
