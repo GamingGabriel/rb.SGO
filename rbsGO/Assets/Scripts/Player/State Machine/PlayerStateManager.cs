@@ -95,6 +95,9 @@ public class PlayerStateManager : MonoBehaviour
     public bool wallLeft;
     public bool wallRight;
 
+    [SerializeField]
+    Vector3 respawn;
+
 
 
     [Header("Movement")]
@@ -132,13 +135,17 @@ public class PlayerStateManager : MonoBehaviour
         BASE_GRAVITY = -10;
         isHolding = false;
         canShoot = true;
+        respawn = transform.position;
 
     }
     
 
     void Update()
     {
-        
+        if (!controller.enabled)
+        {
+            controller.enabled = true;
+        }
         HandleCamera(mouseSensitivity);
         currentState.UpdateState(this);
         if (!canSprint)
@@ -305,10 +312,17 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Checkpoint"))
+        {
+            respawn = other.transform.position;
+        }
         if (other.CompareTag("Kill"))
         {
-            SceneManager.LoadScene("Robot Body Factory");
+            print("respawn");
+            controller.enabled = false;
+            transform.position = respawn;
         }
+        
     }
 
 

@@ -7,6 +7,7 @@ TagManager:
   - Bounce
   - Enemy
   - Kill
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

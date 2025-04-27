@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  range: 10
+  range: 25
   rotationSpeed: 25
   player: {fileID: 0}
   spawnPoint: {fileID: 4758883725989174804}

@@ -46,12 +46,13 @@ public class EnemyScript : MonoBehaviour
             print("in range");
             transform.LookAt(player.transform);
             //RotateTowardsPlayer();
+            if (Time.time - lastShot > rateOfFire)
+            {
+                Fire();
+            }
         } 
 
-        if (Time.time - lastShot > rateOfFire)
-        {
-            Fire();
-        }
+
 
     }
 
