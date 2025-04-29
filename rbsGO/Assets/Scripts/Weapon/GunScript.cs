@@ -86,6 +86,7 @@ public class GunScript : MonoBehaviour
                     //Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
                     closest.GetComponent<EnemyScript>().TakeDamage(10);
                     BulletTrail(bounceHit, closest.transform.position);
+                    Destroy(hit.transform.gameObject);
                 }
             }
             else if (hit.transform.CompareTag("Enemy"))

@@ -52,13 +52,13 @@ public class ThrowScript : MonoBehaviour
         coll.isTrigger = true;
     }
    
-    public void Throw(Vector3 direction, float force)
+    public void Throw(Vector3 direction, Vector3 playerDir, float force)
     {   
         body.isKinematic = false;
         coll.isTrigger = false;
         transform.SetParent(null);
         //body.AddForce(Vector3.Scale(body.transform.forward, Vector3.up).normalized * force, ForceMode.VelocityChange);
         body.AddForce(direction * force);
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 2f);
     }
 }

@@ -254,7 +254,7 @@ public class PlayerStateManager : MonoBehaviour
         //GameObject thrown = Instantiate(throwable, throwPoint.position, Quaternion.Euler(Vector3.forward));
         if (currentHeld != null)
         {
-            currentHeld.GetComponent<ThrowScript>().Throw(throwPoint.forward, throwForce);
+            currentHeld.GetComponent<ThrowScript>().Throw(throwPoint.forward, storedMovement, throwForce);
             currentHeld = null;
         }
     }
