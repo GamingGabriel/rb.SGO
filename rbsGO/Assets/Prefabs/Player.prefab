@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 4839042407422101100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.288, z: -223.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -309,7 +309,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   movement: {x: 0, y: 0}
   mouseSensitivity: 50
-  speed: 10
+  speed: 15
   velocity: {x: 0, y: 0, z: 0}
   gravity: -10
   BASE_GRAVITY: 0
@@ -337,14 +337,20 @@ MonoBehaviour:
   minJumpHeight: 2.5
   wallLeft: 0
   wallRight: 0
-  MOVE_SPEED: 10
+  respawn: {x: 0, y: 0, z: 0}
+  MOVE_SPEED: 15
   jumpHeight: 4
   canSprint: 0
   wallrunning: 0
   lastSprint: 0
-  DASH_COOLDOWN: 1.2
-  DASH_SPEED: 20
-  DASH_DURATION: 0.5
+  DASH_COOLDOWN: 0.5
+  DASH_SPEED: 25
+  DASH_DURATION: 0.35
+  DashBar: {fileID: 0}
+  dashCharge: 100
+  maxDash: 100
+  dashCost: 50
+  dashRegenRate: 25
 --- !u!143 &8864210575750246667
 CharacterController:
   m_ObjectHideFlags: 0
@@ -574,6 +580,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 68773516623091398}
+    - target: {fileID: 9096837479436520755, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
+      propertyPath: bounceRange
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

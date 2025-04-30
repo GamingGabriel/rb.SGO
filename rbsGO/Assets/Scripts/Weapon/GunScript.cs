@@ -21,6 +21,9 @@ public class GunScript : MonoBehaviour
     [SerializeField]
     float trailDuration;
 
+    [SerializeField]
+    float bounceRange;
+
 
     
     public string animName = "Fired";
@@ -55,7 +58,7 @@ public class GunScript : MonoBehaviour
                 
                 Vector3 bounceHit = hit.point;
                 //Transform bounceTrans = hit.transform;
-                Collider[] enemyHits = Physics.OverlapSphere(bounceHit, 100, LayerMask.GetMask("Enemy"));
+                Collider[] enemyHits = Physics.OverlapSphere(bounceHit, bounceRange, LayerMask.GetMask("Enemy"));
                 if(enemyHits.Length > 0)
                 {
 

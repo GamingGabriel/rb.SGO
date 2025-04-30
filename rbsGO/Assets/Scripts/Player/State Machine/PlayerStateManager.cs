@@ -235,11 +235,15 @@ public class PlayerStateManager : MonoBehaviour
         RaycastHit pickup;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out pickup, 100, LayerMask.GetMask("Bounce")))
         {
-            
+
+            if (!isHolding)
+            {
             currentHeld = pickup.transform.gameObject;
             currentHeld.GetComponent<ThrowScript>().PickUp();
             currentHeld.transform.SetParent(throwPoint);
             currentHeld.transform.position = throwPoint.transform.position;
+            isHolding = true;
+            }
         }
     }
 
@@ -275,10 +279,10 @@ public class PlayerStateManager : MonoBehaviour
     void OnThrow()
     {
         //GameObject thrown = Instantiate(throwable, throwPoint.position, Quaternion.Euler(Vector3.forward));
-        if (currentHeld != null)
+        if (isHolding)
         {
             currentHeld.GetComponent<ThrowScript>().Throw(throwPoint.forward, storedMovement, throwForce);
-            currentHeld = null;
+            isHolding = false;
         }
     }
 
