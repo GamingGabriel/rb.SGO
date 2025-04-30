@@ -54,6 +54,7 @@ public class ThrowScript : MonoBehaviour
    
     public void Throw(Vector3 direction, Vector3 playerDir, float force)
     {   
+        gameObject.layer = LayerMask.NameToLayer("Bounce");
         body.isKinematic = false;
         coll.isTrigger = false;
         transform.SetParent(null);

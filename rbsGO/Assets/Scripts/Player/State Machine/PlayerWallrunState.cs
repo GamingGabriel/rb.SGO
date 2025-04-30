@@ -9,7 +9,8 @@ public class PlayerWallrunState : PlayerBaseState
         player.speed = player.WALLRUN_SPEED;
         player.gravity = player.WALL_GRAVITY;
         player.velocity.y = 0;
-        player.wallrunning = true;        
+        player.wallrunning = true;    
+        player.walljump = false;    
 
     }
 

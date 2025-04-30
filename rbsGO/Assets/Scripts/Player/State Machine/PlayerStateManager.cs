@@ -88,6 +88,8 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     float wallrunTimer;
 
+    public bool walljump;
+
     [Header("Detection")]
     public float wallCheckDistance;
     public float minJumpHeight; 
@@ -154,6 +156,7 @@ public class PlayerStateManager : MonoBehaviour
         isHolding = false;
         canShoot = true;
         respawn = transform.position;
+        walljump = false;
 
     }
     
@@ -226,7 +229,11 @@ public class PlayerStateManager : MonoBehaviour
             }
         else if (wallrunning)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -gravity);  
+            if (!walljump)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -gravity);  
+                walljump = true;
+            }
         }
     }  
 
@@ -242,6 +249,7 @@ public class PlayerStateManager : MonoBehaviour
             currentHeld.GetComponent<ThrowScript>().PickUp();
             currentHeld.transform.SetParent(throwPoint);
             currentHeld.transform.position = throwPoint.transform.position;
+            currentHeld.layer = LayerMask.NameToLayer("On Top");
             isHolding = true;
             }
         }
