@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -126,6 +127,23 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     float DASH_DURATION;
 
+    [Header("UI")]
+
+    [SerializeField]
+    Image DashBar;
+
+    [SerializeField]
+    float dashCharge;
+
+    [SerializeField]
+    float maxDash;
+
+    [SerializeField]
+    float dashCost;
+
+    [SerializeField]
+    float dashRegenRate;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -184,6 +202,11 @@ public class PlayerStateManager : MonoBehaviour
                 canShoot = true;
                 gun.anim.ResetTrigger(gun.animName);
             }
+        }
+        if (dashCharge < 100)
+        {
+            dashCharge += dashRegenRate * Time.deltaTime;
+            DashBar.fillAmount = dashCharge / maxDash;
         }
         Gravity();
     }
@@ -283,16 +306,25 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (canSprint)
         {
-            velocity.y = 0;
-            lastSprint = Time.time; //Sets the time of lastSprint to time of input
-            canSprint = false; //sets the ability to sprint to false            
-            /*while (speed <= DASH_SPEED)
+            if (dashCharge >= dashCost)
+            {
+                velocity.y = 0;
+                lastSprint = Time.time; //Sets the time of lastSprint to time of input
+                canSprint = false; //sets the ability to sprint to false            
+                /*while (speed <= DASH_SPEED)
+                    {
+                        speed += DASH_RATE * Time.deltaTime;
+                    }
+                */
+                speed = DASH_SPEED;
+                gravity = 0;
+                dashCharge -= dashCost;
+                if (dashCharge < 0)
                 {
-                    speed += DASH_RATE * Time.deltaTime;
+                    dashCharge = 0;
                 }
-            */
-            speed = DASH_SPEED;
-            gravity = 0;
+                DashBar.fillAmount = dashCharge / maxDash; 
+            }
         }
     }
     private void CheckForWall()

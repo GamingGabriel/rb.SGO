@@ -1461,7 +1461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 464031902414011139, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 464031902414011139, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1502,6 +1502,30 @@ PrefabInstance:
     - target: {fileID: 858833989323864794, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
       propertyPath: m_Name
       value: PlayerGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833452571023395015, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 71.481514
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833452571023395015, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 95.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833452571023395015, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 95.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833452571023395015, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000000050375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833452571023395015, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.32798
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833452571023395015, guid: ecd3ff0cf598ceb419fb237097470a75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.12337
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
