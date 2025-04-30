@@ -18,4 +18,9 @@ public class EnemyBulletScript : MonoBehaviour
     {
         transform.Translate(new Vector3(0f, 0f, speed * Time.deltaTime));
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
 }
