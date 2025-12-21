@@ -2820,11 +2820,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Socials:
+  m_text: '
 
-    Discord: @meissleepie
+    Find me at:
 
-    Email: gabrieljrosss@gmail.com
+    Email: gabrieljross86@gmail.com
 
     itch.io:                  
     LinkedIn:
