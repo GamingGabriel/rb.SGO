@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Kill
   - Checkpoint
+  - Canvas
   layers:
   - Default
   - TransparentFX

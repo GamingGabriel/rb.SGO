@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -146,6 +147,9 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     float dashRegenRate;
 
+    [SerializeField]
+    Canvas canvas;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -157,6 +161,8 @@ public class PlayerStateManager : MonoBehaviour
         canShoot = true;
         respawn = transform.position;
         walljump = false;
+        //canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();    
+        DashBar = GameObject.Find("DashCharge").GetComponent<Image>();
 
     }
     
