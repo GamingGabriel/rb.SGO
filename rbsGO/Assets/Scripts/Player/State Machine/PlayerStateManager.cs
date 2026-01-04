@@ -41,11 +41,11 @@ public class PlayerStateManager : MonoBehaviour
 
     public float WALL_GRAVITY;
 
-    [Header("Camera")]
+    [Header("Camera")] //What I need
     Vector2 mouseMovement;
 
     [SerializeField]
-    GameObject cam;    
+    GameObject cam; //Current Camera 
     float cameraUpRotation = 0;
 
 
@@ -346,13 +346,13 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
     private void CheckForWall()
-    { //*
-        wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, wallCheckDistance, wall);
+    { 
+        wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, wallCheckDistance, wall); //Chekcs for left wall
         Debug.DrawRay(transform.position, transform.right * wallCheckDistance, Color.red, .5f);
-        wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, wallCheckDistance, wall);
+        wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, wallCheckDistance, wall); //checks for right wall
         Debug.DrawRay(transform.position, -transform.right * wallCheckDistance, Color.red, .5f);
 
-        Debug.DrawRay(transform.position, Vector3.down * minJumpHeight, Color.blue, .5f);
+        Debug.DrawRay(transform.position, Vector3.down * minJumpHeight, Color.blue, .5f); //checks  if player is high enough above the ground
     }
 
     public bool AboveGround()

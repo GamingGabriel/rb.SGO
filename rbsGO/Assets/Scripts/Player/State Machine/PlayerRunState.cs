@@ -20,7 +20,7 @@ public class PlayerRunState : PlayerBaseState
             float moveZ = player.movement.y;
             
             Vector3 actual_movement = (player.transform.forward * moveZ) + (player.transform.right * moveX);
-            player.storedMovement = actual_movement;
+            player.storedMovement = actual_movement; //Attempted to make inertia...I think. 
 
             player.controller.Move(actual_movement * Time.deltaTime * player.speed);
         //When will we leave this scene?  
