@@ -309,7 +309,7 @@ public class PlayerStateManager : MonoBehaviour
 
         cameraUpRotation = Mathf.Clamp(cameraUpRotation, -90, 90);
 
-        cam.transform.localRotation = Quaternion.Euler(cameraUpRotation, 0, 0);
+        cam.transform.localRotation = Quaternion.Euler(cameraUpRotation, 0, 0); //Manually adjusting the camera -- probably messing with it.
 
         transform.Rotate(Vector3.up * lookX);
     }

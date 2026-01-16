@@ -1111,7 +1111,8 @@ GameObject:
   m_Component:
   - component: {fileID: 467781391}
   - component: {fileID: 467781392}
-  - component: {fileID: 467781393}
+  - component: {fileID: 467781397}
+  - component: {fileID: 467781396}
   m_Layer: 0
   m_Name: VirtualCamera1
   m_TagString: Untagged
@@ -1177,7 +1178,20 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: -1
---- !u!114 &467781393
+--- !u!114 &467781396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467781390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afa82ae3200b82408d605c3dbdd1e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damping: 0
+--- !u!114 &467781397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2102,6 +2116,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 28.373302
       objectReference: {fileID: 0}
+    - target: {fileID: 8867200772957037846, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1505947000}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1032907219067911629, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
@@ -2114,7 +2132,7 @@ PrefabInstance:
       addedObject: {fileID: 1505947001}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1111702923554563590, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 1703819072}
   m_SourcePrefab: {fileID: 100100000, guid: a44d1d023008fbf4fa02f0398b2210f6, type: 3}
 --- !u!1 &824115491
@@ -3049,8 +3067,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505947000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.27}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.27000046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3251,7 +3269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703819067}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
