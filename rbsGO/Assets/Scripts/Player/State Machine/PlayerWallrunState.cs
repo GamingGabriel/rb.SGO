@@ -10,7 +10,15 @@ public class PlayerWallrunState : PlayerBaseState
         player.gravity = player.WALL_GRAVITY;
         player.velocity.y = 0;
         player.wallrunning = true;    
-        player.walljump = false;    
+        player.walljump = false; 
+        if (player.wallLeft)
+        {
+            player.SwitchCamera(1);
+        } 
+        else if (player.wallRight)
+        {
+            player.SwitchCamera(2);
+        } 
 
     }
 
@@ -28,6 +36,7 @@ public class PlayerWallrunState : PlayerBaseState
         //When will we leave this state? 
         if ((!player.wallLeft && !player.wallRight) || !player.AboveGround())
         {
+            player.SwitchCamera(0);
             player.SwitchState(player.runState);
         } 
     }   
