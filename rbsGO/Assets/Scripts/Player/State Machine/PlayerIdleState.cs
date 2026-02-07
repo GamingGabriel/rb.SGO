@@ -9,6 +9,8 @@ public class PlayerIdleState : PlayerBaseState
         player.speed = player.MOVE_SPEED;
         player.gravity = player.BASE_GRAVITY;
         player.wallrunning = false;
+        //player.wallLeft = false;
+        //player.wallRight = false;
     }
 
     public override void UpdateState(PlayerStateManager player)

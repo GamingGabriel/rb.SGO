@@ -179,6 +179,7 @@ public class PlayerStateManager : MonoBehaviour
         camSystem = GameObject.Find("CameraSystem");
         cameras = camSystem.GetComponentsInChildren<CinemachineCamera>();
         currentCamera = cameras[0];
+        cameras[0].Priority = 1;
     }
     
 
@@ -340,6 +341,7 @@ public class PlayerStateManager : MonoBehaviour
     public void SwitchCamera(int n)
     {
         currentCamera.Priority = 0;
+        currentCamera = cameras[n];
         cameras[n].Priority = 1;
     }
 
@@ -379,8 +381,8 @@ public class PlayerStateManager : MonoBehaviour
         wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, wallCheckDistance, wall); //Chekcs for left wall
         wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, wallCheckDistance, wall); //checks for right wall
         Debug.DrawRay(transform.position, transform.right * wallCheckDistance, Color.red, .5f);
-        Debug.DrawRay(transform.position, -transform.right * wallCheckDistance, Color.red, .5f);
-        Debug.DrawRay(transform.position, Vector3.down * minJumpHeight, Color.blue, .5f); //checks  if player is high enough above the ground
+        Debug.DrawRay(transform.position, -transform.right * wallCheckDistance, Color.blue, .5f);
+        Debug.DrawRay(transform.position, Vector3.down * minJumpHeight, Color.green, .5f); //checks  if player is high enough above the ground
     }
 
     public bool AboveGround()

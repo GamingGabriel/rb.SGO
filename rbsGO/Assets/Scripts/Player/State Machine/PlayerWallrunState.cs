@@ -11,11 +11,12 @@ public class PlayerWallrunState : PlayerBaseState
         player.velocity.y = 0;
         player.wallrunning = true;    
         player.walljump = false; 
+        
         if (player.wallLeft)
         {
             player.SwitchCamera(1);
         } 
-        else if (player.wallRight)
+        if (player.wallRight)
         {
             player.SwitchCamera(2);
         } 
