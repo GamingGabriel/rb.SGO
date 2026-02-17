@@ -24,7 +24,8 @@ public class GunScript : MonoBehaviour
     [SerializeField]
     float bounceRange;
 
-
+    [SerializeField]
+    AudioSource gunshot;
     
     public string animName = "Fired";
     public Animator anim;
@@ -40,6 +41,7 @@ public class GunScript : MonoBehaviour
     public void Shoot()
     {
         muzzleFlash.Play();
+        gunshot.Play();
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, float.MaxValue))
         {
