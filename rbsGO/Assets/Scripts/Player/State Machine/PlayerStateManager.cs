@@ -159,6 +159,10 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     Canvas canvas;
 
+    [Header("AUDIO")]
+    [SerializeField]
+    AudioSource dashSound;
+
 
     //_________________________________________________________________________________________________________________________________
 
@@ -359,7 +363,8 @@ public class PlayerStateManager : MonoBehaviour
             {
                 velocity.y = 0;
                 lastSprint = Time.time; //Sets the time of lastSprint to time of input
-                canSprint = false; //sets the ability to sprint to false            
+                canSprint = false; //sets the ability to sprint to false      
+                dashSound.Play();      
                 /*while (speed <= DASH_SPEED)
                     {
                         speed += DASH_RATE * Time.deltaTime;
