@@ -1815,6 +1815,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5163688683192083061, guid: cabeca001053c0d41baf91cf5918cff0, type: 3}
   m_PrefabInstance: {fileID: 30566095}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &765970681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4631999629564132083, guid: b12d3065f4b52d6478fa3c401163b0c0, type: 3}
+  m_PrefabInstance: {fileID: 1015884549521405247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &765970686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765970681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 20a705aea2d80e0478fb89b6f43d8530, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.2
+  FrequencyGain: 0.2
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &810576432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,6 +2318,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1455673715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &863374464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 338102058826676022, guid: b12d3065f4b52d6478fa3c401163b0c0, type: 3}
+  m_PrefabInstance: {fileID: 1015884549521405247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &863374469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863374464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 20a705aea2d80e0478fb89b6f43d8530, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.2
+  FrequencyGain: 0.2
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &922598995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4575,6 +4619,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2425035976625311272, guid: 43db2cf09fa98fe48b9355a35af40ae8, type: 3}
   m_PrefabInstance: {fileID: 2143373831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2133184588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3802962299793591956, guid: b12d3065f4b52d6478fa3c401163b0c0, type: 3}
+  m_PrefabInstance: {fileID: 1015884549521405247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2133184593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133184588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 20a705aea2d80e0478fb89b6f43d8530, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.2
+  FrequencyGain: 0.2
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!4 &2139041531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4029495092780069453, guid: 768bfac9a0e07674fae1411d6c470553, type: 3}
@@ -4822,7 +4888,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4631999629564132083, guid: b12d3065f4b52d6478fa3c401163b0c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 765970686}
+    - targetCorrespondingSourceObject: {fileID: 338102058826676022, guid: b12d3065f4b52d6478fa3c401163b0c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 863374469}
+    - targetCorrespondingSourceObject: {fileID: 3802962299793591956, guid: b12d3065f4b52d6478fa3c401163b0c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2133184593}
   m_SourcePrefab: {fileID: 100100000, guid: b12d3065f4b52d6478fa3c401163b0c0, type: 3}
 --- !u!1001 &2307087923794075589
 PrefabInstance:
