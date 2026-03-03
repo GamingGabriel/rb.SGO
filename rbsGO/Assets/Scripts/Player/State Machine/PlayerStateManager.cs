@@ -57,7 +57,14 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField]
     CinemachineCamera[] cameras; //Array to hold all the cameras in camSystem
 
-    
+    [SerializeField]
+    CinemachineCamera storedCamera;
+
+    [SerializeField]
+    float storedFOV;
+
+    [SerializeField] 
+    float FOV_SCALAR;
     
     float cameraUpRotation = 0; //Camera Up Rotataion
 
@@ -184,6 +191,7 @@ public class PlayerStateManager : MonoBehaviour
         cameras = camSystem.GetComponentsInChildren<CinemachineCamera>();
         currentCamera = cameras[0];
         cameras[0].Priority = 1;
+        SwitchCamera(0);
     }
     
 
@@ -202,6 +210,7 @@ public class PlayerStateManager : MonoBehaviour
             if (Mathf.Abs(lastSprint - Time.time) >= DASH_COOLDOWN) // if the difference between the last Sprint and now is greater than 5
             {
                 canSprint = true;
+                storedCamera.Lens.FieldOfView = storedFOV;
             }
 
             if (Mathf.Abs(lastSprint - Time.time) >= DASH_DURATION) // if the difference between the last Sprint and now is greater than 5
@@ -210,6 +219,7 @@ public class PlayerStateManager : MonoBehaviour
                 {
                     speed = WALLRUN_SPEED;
                     gravity = WALL_GRAVITY;
+                    
                 }
                 else
                 {
@@ -344,9 +354,12 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SwitchCamera(int n)
     {
+        //storedCamera = currentCamera;
+        //storedFOV = currentCamera.Lens.FieldOfView;
         currentCamera.Priority = 0;
         currentCamera = cameras[n];
         cameras[n].Priority = 1;
+        //storedCamera.Lens.FieldOfView = storedFOV;
     }
 
     public void SwitchState(PlayerBaseState newState)
@@ -361,6 +374,9 @@ public class PlayerStateManager : MonoBehaviour
         {
             if (dashCharge >= dashCost)
             {
+                storedCamera = currentCamera; //Store current camera
+                storedFOV = currentCamera.Lens.FieldOfView; //Store current camera's FoV
+                currentCamera.Lens.FieldOfView += FOV_SCALAR; //Change current camera FoV
                 velocity.y = 0;
                 lastSprint = Time.time; //Sets the time of lastSprint to time of input
                 canSprint = false; //sets the ability to sprint to false      
