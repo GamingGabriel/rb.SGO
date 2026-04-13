@@ -9,6 +9,7 @@ TagManager:
   - Kill
   - Checkpoint
   - Canvas
+  - Audio
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,9 @@ public class StartSceneChanger : MonoBehaviour
     [SerializeField]
     string levelName;
 
+    [SerializeField]
+    private AudioManagerScript audioManager;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -12,5 +15,6 @@ public class StartSceneChanger : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(levelName);
+        audioManager.StopMusic();
     }
 }
