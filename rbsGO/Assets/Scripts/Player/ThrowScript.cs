@@ -7,6 +7,15 @@ public class ThrowScript : MonoBehaviour
 
     [SerializeField]
     Collider coll;
+    
+    [SerializeField]
+    MeshRenderer mesh;
+
+    [SerializeField]
+    Material baseMaterial; 
+
+    [SerializeField]
+    Material highlightMaterial; 
 
     
 
@@ -36,20 +45,19 @@ public class ThrowScript : MonoBehaviour
     */
 
     // Update is called once per frame
-    void OnAwake()
+    void Start()
     {
         //player = GameObject.FindWithTag("Player");
-
-    }
-    void Update()
-    {
+        ChangeMaterial(highlightMaterial);
         
+
     }
 
     public void PickUp()
     {
         body.isKinematic = true;
         coll.isTrigger = true;
+        ChangeMaterial(baseMaterial);
     }
    
     public void Throw(Vector3 direction, Vector3 playerDir, float force)
@@ -60,6 +68,12 @@ public class ThrowScript : MonoBehaviour
         transform.SetParent(null);
         //body.AddForce(Vector3.Scale(body.transform.forward, Vector3.up).normalized * force, ForceMode.VelocityChange);
         body.AddForce(direction * force);
+        ChangeMaterial(highlightMaterial);
         //Destroy(gameObject, 2f);
+    }
+    
+    public void ChangeMaterial(Material m)
+    {
+        mesh.material = m;
     }
 }
