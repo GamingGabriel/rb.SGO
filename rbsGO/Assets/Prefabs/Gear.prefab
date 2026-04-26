@@ -130,6 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 5303507534612085264}
   coll: {fileID: 563292813846184350}
+  mesh: {fileID: 6081626273344973036}
+  baseMaterial: {fileID: 2100000, guid: eeb7ded6334b66e45b143f6c040054dd, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: f6689d4e24d42a44d816b65e1cd8d8dc, type: 2}
 --- !u!54 &5303507534612085264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -178,3 +181,8 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0083762705, y: 0.008505486, z: 0.0023230994}
   m_Center: {x: 0, y: 1.2215754e-18, z: 0.0006899704}
+--- !u!23 &6081626273344973036 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 5d441e01fff1cb14fa5c7be959c172ec, type: 3}
+  m_PrefabInstance: {fileID: 4875097661881611368}
+  m_PrefabAsset: {fileID: 0}
