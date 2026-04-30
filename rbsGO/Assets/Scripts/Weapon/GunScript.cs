@@ -4,6 +4,9 @@ public class GunScript : MonoBehaviour
 {
 
     [SerializeField]
+    float CAST_RADIUS;
+
+    [SerializeField]
     Camera cam;
     
     [SerializeField]
@@ -43,7 +46,7 @@ public class GunScript : MonoBehaviour
         muzzleFlash.Play();
         gunshot.Play();
         RaycastHit hit;
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, float.MaxValue))
+        if(Physics.SphereCast(cam.transform.position, CAST_RADIUS, cam.transform.forward, out hit, float.MaxValue))
         {
             //Debug.Log(hit.transform.name);
             //Intsntiate Bullet Trail Object; maybe make function? idk
