@@ -27,6 +27,9 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     float lastShot;
 
+    [SerializeField]
+    AudioSource shootSFX;
+
 
 
     void Start()
@@ -68,6 +71,7 @@ public class EnemyScript : MonoBehaviour
     private void Fire()
     {
         Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        shootSFX.Play();
         lastShot = Time.time;
     }
     public void TakeDamage(float dmg)

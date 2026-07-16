@@ -192,6 +192,7 @@ public class PlayerStateManager : MonoBehaviour
         currentCamera = cameras[0];
         cameras[0].Priority = 1;
         SwitchCamera(0);
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
     
 
@@ -424,6 +425,11 @@ public class PlayerStateManager : MonoBehaviour
             transform.position = respawn;
         }
         
+    }
+
+    void OnReset()
+    {
+        SceneManager.LoadScene("StartScreen");
     }
 
 

@@ -94,6 +94,7 @@ public class GunScript : MonoBehaviour
                     //Debug.DrawRay(bounceHit, dir * 100, Color.red, 2);
                     closest.GetComponent<EnemyScript>().TakeDamage(10);
                     BulletTrail(bounceHit, closest.transform.position);
+                    GameObject bounceImpactOnj = Instantiate(impactEffect, closest.transform.position, Quaternion.LookRotation(closest.transform.position)); 
                     Destroy(hit.transform.gameObject);
                 }
             }
